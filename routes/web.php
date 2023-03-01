@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\TratamientoController;
+use App\Http\Controllers\AdopcionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,11 +27,27 @@ Route::get('/animal', function () {
 Route::get('/animal/create', [AnimalController::class,'create']);
 */
 
-Route::resource('animal',AnimalController::class);
+Route::resource('animal',AnimalController::class)->middleware('auth');
 Auth::routes();
 
 Route::get('/home', [AnimalController::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'auth'], function (){
     Route::get('/home', [AnimalController::class, 'index'])->name('home');
+});
+
+Route::resource('tratamiento',TratamientoController::class)->middleware('auth');
+
+Route::get('/home', [Tratamiento::class, 'index'])->name('home');
+
+Route::group(['middleware' => 'auth'], function (){
+    Route::get('/home', [TratamientoController::class, 'index'])->name('home');
+});
+
+Route::resource('adopcion',AdopcionController::class)->middleware('auth');
+
+Route::get('/home', [Adopcion::class, 'index'])->name('home');
+
+Route::group(['middleware' => 'auth'], function (){
+    Route::get('/home', [AdopcionController::class, 'index'])->name('home');
 });

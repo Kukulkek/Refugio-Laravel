@@ -11,39 +11,36 @@
         </button>
     </div>
     @endif
-    <a href="{{ url('animal/create') }}" class="btn btn-success">Añadir animal</a>
+    <a href="{{ url('tratamiento/create') }}" class="btn btn-success">Añadir tratamiento</a>
     <table class="table table-light">
         <thead class="thead-light">
             <tr>
                 <th>#</th>
-                <th>Foto</th>
-                <th>Especie</th>
-                <th>Raza</th>
-                <th>Nombre</th>
-                <th>Sexo</th>
+                <th>Animal</th>
+                <th>Nombre Tratamiento</th>
+                <th>Fecha</th>
+                <th>Veterinario</th>
                 <th>Acciones</th>
             </tr>
         </thead>
 
         <tbody>
-            @foreach( $animals as $animal )
+            @foreach( $tratamientos as $tratamiento )
             <tr>
-                <td>{{ $animal->id }}</td>
-                <td>
-                    <img src="{{ asset('storage').'/'.$animal->Foto }}" width="100" alt="">
-                </td>
-                <td>{{ $animal->Especie }}</td>
-                <td>{{ $animal->Raza }}</td>
-                <td>{{ $animal->Nombre }}</td>
-                <td>{{ $animal->Sexo }}</td>
+                <td>{{ $tratamiento->id }}</td>
+
+                <td>{{ $tratamiento->animal_id }}</td>
+                <td>{{ $tratamiento->Nombre }}</td>
+                <td>{{ $tratamiento->Fecha }}</td>
+                <td>{{ $tratamiento->Veterinario }}</td>
                 <td>
                     
-                <a href="{{ url('/animal/'.$animal->id.'/edit') }}" class="btn btn-warning">
+                <a href="{{ url('/tratamiento/'.$tratamiento->id.'/edit') }}" class="btn btn-warning">
                     Editar
                 </a> 
                 |
                     
-                <form action="{{ url('/animal/'.$animal->id) }}" class="d-inline" method="post">
+                <form action="{{ url('/tratamiento/'.$tratamiento->id) }}" class="d-inline" method="post">
                 @csrf
                 {{ method_field('DELETE') }}
                 <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">

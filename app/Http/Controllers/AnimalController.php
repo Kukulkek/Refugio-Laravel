@@ -34,6 +34,16 @@ class AnimalController extends Controller
     public function store(Request $request)
     {
         //
+
+        $campos=[
+            'Nombre'=>'required|string|max:20'
+        ];
+        $mensaje=[
+            'required'=>'El :attribute es required'
+        ];
+
+        $this->validate($request, $campos, $mensaje);
+        
         //$datosAnimal = request()->all();
         $datosAnimal = request()->except('_token');
 
@@ -78,7 +88,9 @@ class AnimalController extends Controller
          
         Animal::where('id','=',$id)->update($datosAnimal);
         $animal=Animal::findOrFail($id);
-        return view('animal.edit', compact('animal') );
+        //return view('animal.edit', compact('animal') );
+        return redirect('animal')->with('mensaje', 'Animal modificado');
+
     }
 
     /**

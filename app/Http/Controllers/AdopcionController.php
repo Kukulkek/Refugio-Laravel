@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tratamiento;
+use App\Models\Adopcion;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;
 
-class TratamientoController extends Controller
+class AdopcionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class TratamientoController extends Controller
     public function index()
     {
         //
-        $datos['tratamientos']=Tratamiento::paginate(5);
-        return view('tratamiento.index',$datos );
+        $datos['adopcions']=Adopcion::paginate(5);
+        return view('adopcion.index',$datos );
     }
 
     /**
@@ -25,7 +25,7 @@ class TratamientoController extends Controller
     public function create()
     {
         //
-        return view('tratamiento.create');
+        return view('adopcion.create');
     }
 
     /**
@@ -45,16 +45,16 @@ class TratamientoController extends Controller
         $this->validate($request, $campos, $mensaje);
         
         //$datosAnimal = request()->all();
-        $datosTratamiento = request()->except('_token');
+        $datosAdopcion = request()->except('_token');
 
-        Tratamiento::insert($datosTratamiento);
-        return response()->json($datosTratamiento);
+        Adopcion::insert($datosAdopcion);
+        return response()->json($datosAdopcion);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Tratamiento $tratamiento)
+    public function show(Adopcion $adopcion)
     {
         //
     }
@@ -65,22 +65,22 @@ class TratamientoController extends Controller
     public function edit($id)
     {
         //
-        $tratamiento=Tratamiento::findOrFail($id);
-        return view('tratamiento.edit', compact('tratamiento'));
+        $adopcion=Adopcion::findOrFail($id);
+        return view('adopcion.edit', compact('adopcion'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tratamiento $tratamiento)
+    public function update(Request $request, Adopcion $adopcion)
     {
         //
-        $datosTratamiento = request()->except(['_token', '_method']);
+        $datosAdopcion = request()->except(['_token', '_method']);
          
-        Tratamiento::where('id','=',$id)->update($datosTratamiento);
-        $tratamiento=Tratamiento::findOrFail($id);
+        Adopcion::where('id','=',$id)->update($datosAdopcion);
+        $adopcion=Adopcion::findOrFail($id);
         //return view('animal.edit', compact('animal') );
-        return redirect('tratamiento')->with('mensaje', 'Tratamiento modificado');
+        return redirect('adopcion')->with('mensaje', 'Adopcion modificada');
     }
 
     /**
@@ -89,8 +89,8 @@ class TratamientoController extends Controller
     public function destroy($id)
     {
         //
-        $tratamiento=Tratamiento::findOrFail($id);
-        Tratamiento::destroy($id);
-        return redirect('tratamiento');
+        $adopcion=Adopcion::findOrFail($id);
+        Adopcion::destroy($id);
+        return redirect('adopcion');
     }
 }

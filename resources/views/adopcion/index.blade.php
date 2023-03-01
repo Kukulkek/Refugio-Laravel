@@ -11,39 +11,33 @@
         </button>
     </div>
     @endif
-    <a href="{{ url('animal/create') }}" class="btn btn-success">Añadir animal</a>
+    <a href="{{ url('adopcion/create') }}" class="btn btn-success">Añadir adopcion</a>
     <table class="table table-light">
         <thead class="thead-light">
             <tr>
                 <th>#</th>
-                <th>Foto</th>
-                <th>Especie</th>
-                <th>Raza</th>
+                <th>Animal</th>
                 <th>Nombre</th>
-                <th>Sexo</th>
+                <th>Fecha</th>
                 <th>Acciones</th>
             </tr>
         </thead>
 
         <tbody>
-            @foreach( $animals as $animal )
+            @foreach( $adopcions as $adopcion )
             <tr>
-                <td>{{ $animal->id }}</td>
-                <td>
-                    <img src="{{ asset('storage').'/'.$animal->Foto }}" width="100" alt="">
-                </td>
-                <td>{{ $animal->Especie }}</td>
-                <td>{{ $animal->Raza }}</td>
-                <td>{{ $animal->Nombre }}</td>
-                <td>{{ $animal->Sexo }}</td>
+                <td>{{ $adopcion->id }}</td>
+                <td>{{ $adopcion->animal_id }}</td>
+                <td>{{ $adopcion->Nombre }}</td>
+                <td>{{ $adopcion->Fecha }}</td>
                 <td>
                     
-                <a href="{{ url('/animal/'.$animal->id.'/edit') }}" class="btn btn-warning">
+                <a href="{{ url('/adopcion/'.$adopcion->id.'/edit') }}" class="btn btn-warning">
                     Editar
                 </a> 
                 |
                     
-                <form action="{{ url('/animal/'.$animal->id) }}" class="d-inline" method="post">
+                <form action="{{ url('/adopcion/'.$adopcion->id) }}" class="d-inline" method="post">
                 @csrf
                 {{ method_field('DELETE') }}
                 <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
