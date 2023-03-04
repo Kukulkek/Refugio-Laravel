@@ -1,3 +1,7 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">    
+    
     <div class="form-group">
 
     @if(count($errors)>0)
@@ -10,8 +14,13 @@
         </div>
     @endif
     
-    <label for="Especie">Especie</label>
-    <input type="text" class="form-control" name="animal_id" value="{{ isset($adopcion->animal_id)?$adopcion->animal_id:'' }}" id="animal_id">
+    <label for="Animal">Animal</label>
+    <select name="animal_id" class="form-control" value="{{ isset($adopcion->animal_id)?$adopcion->animal_id:'' }}" id="animal_id">
+    <option selected>Elija un animal</option>
+        @foreach($lista_animals as $item)
+        <option value="{{ $item->id }}">{{ $item->Nombre }}</option>
+        @endforeach
+    </select>
     <br>
     <label for="Nombre">Nombre</label>
     <input type="text" class="form-control" name="Nombre" value="{{ isset($adopcion->Nombre)?$adopcion->Nombre:'' }}" id="Nombre">
@@ -26,3 +35,9 @@
     <br>
 
     </div>
+    </div>
+    <div class="col-sm">
+      placeholder
+    </div>
+  </div>
+</div>

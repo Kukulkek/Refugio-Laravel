@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Adopcion;
-use App\Models\Animal;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;
 
-class AdopcionController extends Controller
+class UsuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,9 @@ class AdopcionController extends Controller
     public function index()
     {
         //
-        $datos['adopcions']=Adopcion::paginate(5);
-        return view('adopcion.index',$datos );
+        $datos['usuarios']=Usuario::paginate(5);
+        return view('usuario.index',$datos );
+    
     }
 
     /**
@@ -26,9 +26,7 @@ class AdopcionController extends Controller
     public function create()
     {
         //
-        $animals = Animal::all();
-        $data = array("lista_animals" => $animals);
-        return response()->view('adopcion.create', $data, 200);
+        return view('usuario.create');
     }
 
     /**
@@ -37,7 +35,6 @@ class AdopcionController extends Controller
     public function store(Request $request)
     {
         //
-
         $campos=[
             'Nombre'=>'required|string|max:20'
         ];
@@ -48,16 +45,15 @@ class AdopcionController extends Controller
         $this->validate($request, $campos, $mensaje);
         
         //$datosAnimal = request()->all();
-        $datosAdopcion = request()->except('_token');
-
-        Adopcion::insert($datosAdopcion);
-        return response()->json($datosAdopcion);
+        $datosUsuario = request()->except('_token');
+        Usuario::insert($datosUsuario);
+        return redirect('usuario');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Adopcion $adopcion)
+    public function show(Usuario $usuario)
     {
         //
     }
@@ -68,9 +64,10 @@ class AdopcionController extends Controller
     public function edit($id)
     {
         //
-        $adopcion=Adopcion::findOrFail($id);
-        return view('adopcion.edit', compact('adopcion'));
+        $usuario=Usuario::findOrFail($id);
+        return view('usuario.edit', compact('usuario'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -78,12 +75,12 @@ class AdopcionController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $datosAdopcion = request()->except(['_token', '_method']);
+        $datosUsuario = request()->except(['_token', '_method']);
          
-        Adopcion::where('id','=',$id)->update($datosAdopcion);
-        $adopcion=Adopcion::findOrFail($id);
+        Usuario::where('id','=',$id)->update($datosUsuario);
+        $usuario=Usuario::findOrFail($id);
         //return view('animal.edit', compact('animal') );
-        return redirect('adopcion')->with('mensaje', 'Adopcion modificada');
+        return redirect('usuario')->with('mensaje', 'Usuario modificado');
     }
 
     /**
@@ -92,8 +89,8 @@ class AdopcionController extends Controller
     public function destroy($id)
     {
         //
-        $adopcion=Adopcion::findOrFail($id);
-        Adopcion::destroy($id);
-        return redirect('adopcion');
+        $usuario=Usuario::findOrFail($id);
+        Usuario::destroy($id);
+        return redirect('usuario');
     }
 }

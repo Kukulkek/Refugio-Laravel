@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\TratamientoController;
 use App\Http\Controllers\AdopcionController;
+use App\Http\Controllers\UsuarioController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,4 +51,12 @@ Route::get('/home', [Adopcion::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'auth'], function (){
     Route::get('/home', [AdopcionController::class, 'index'])->name('home');
+});
+
+Route::resource('usuario',UsuarioController::class)->middleware('auth');
+
+Route::get('/home', [Usuario::class, 'index'])->name('home');
+
+Route::group(['middleware' => 'auth'], function (){
+    Route::get('/home', [UsuarioController::class, 'index'])->name('home');
 });

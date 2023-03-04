@@ -1,3 +1,7 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+
     <div class="form-group">
 
     @if(count($errors)>0)
@@ -9,12 +13,21 @@
             </ul>
         </div>
     @endif
-    
+
+
+      
+   
     <label for="Animal">Animal</label>
-    <input type="text" class="form-control" name="animal_id" value="{{ isset($tratamiento->animal_id)?$tratamiento->animal_id:'' }}" id="animal_id">
+    <select name="animal_id" class="form-control" value="{{ isset($usuario->animal_id)?$tratamiento->animal_id:'' }}" id="animal_id">
+    <option selected>Elija un animal</option>
+        @foreach($lista_animals as $item)
+        <option value="{{ $item->id }}">{{ $item->Nombre }}</option>
+        @endforeach
+    </select>
     <br>
+
     <label for="Nombre">Nombre</label>
-    <input type="text" class="form-control" name="Nombre" value="{{ isset($tratamiento->Nombre)?$Tratamiento->Nombre:'' }}" id="Nombre">
+    <input type="text" class="form-control" name="Nombre" value="{{ isset($tratamiento->Nombre)?$tratamiento->Nombre:'' }}" id="Nombre">
     <br>
     <label for="Fecha">Fecha</label>
     <input type="date" class="form-control" name="Fecha" value="{{ isset($tratamiento->Fecha)?$tratamiento->Fecha:'' }}" id="Fecha">
@@ -29,3 +42,9 @@
     <br>
 
     </div>
+    </div>
+    <div class="col-sm">
+      placeholder
+    </div>
+  </div>
+</div>

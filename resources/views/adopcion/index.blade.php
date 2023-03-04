@@ -12,6 +12,10 @@
     </div>
     @endif
     <a href="{{ url('adopcion/create') }}" class="btn btn-success">Añadir adopcion</a>
+    <div class="search-container">
+    <input type="text" placeholder="Buscar Nombre">
+    <button type="button">Buscar</button>
+    </div>
     <table class="table table-light">
         <thead class="thead-light">
             <tr>

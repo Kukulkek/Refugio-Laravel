@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tratamiento;
+use App\Models\Animal;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;
@@ -25,7 +26,9 @@ class TratamientoController extends Controller
     public function create()
     {
         //
-        return view('tratamiento.create');
+        $animals = Animal::all();
+        $data = array("lista_animals" => $animals);
+        return response()->view('tratamiento.create', $data, 200);
     }
 
     /**
@@ -72,7 +75,7 @@ class TratamientoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tratamiento $tratamiento)
+    public function update(Request $request, $id)
     {
         //
         $datosTratamiento = request()->except(['_token', '_method']);

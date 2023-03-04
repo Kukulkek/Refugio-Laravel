@@ -11,7 +11,7 @@
         </button>
     </div>
     @endif
-    <a href="{{ url('animal/create') }}" class="btn btn-success">Añadir animal</a>
+    <a href="{{ url('usuario/create') }}" class="btn btn-success">Añadir usuario</a>
     <div class="search-container">
     <input type="text" placeholder="Buscar Nombre">
     <button type="button">Buscar</button>
@@ -20,34 +20,40 @@
         <thead class="thead-light">
             <tr>
                 <th>#</th>
-                <th>Foto</th>
-                <th>Especie</th>
-                <th>Raza</th>
+
                 <th>Nombre</th>
-                <th>Sexo</th>
+                <th>Segundo Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Correo Electronico</th>
+                <th>Número Telefonico</th>
+                <th>Rol</th>
+
                 <th>Acciones</th>
             </tr>
         </thead>
 
         <tbody>
-            @foreach( $animals as $animal )
+            @foreach( $usuarios as $usuario )
             <tr>
-                <td>{{ $animal->id }}</td>
-                <td>
-                    <img src="{{ asset('storage').'/'.$animal->Foto }}" width="100" alt="">
-                </td>
-                <td>{{ $animal->Especie }}</td>
-                <td>{{ $animal->Raza }}</td>
-                <td>{{ $animal->Nombre }}</td>
-                <td>{{ $animal->Sexo }}</td>
+                <td>{{ $usuario->id }}</td>
+
+                <td>{{ $usuario->Nombre }}</td>
+                <td>{{ $usuario->Segnombre }}</td>
+                <td>{{ $usuario->Apellidop }}</td>
+                <td>{{ $usuario->Apellidom }}</td>
+                <td>{{ $usuario->email }}</td>
+                <td>{{ $usuario->Telefono }}</td>
+                <td>{{ $usuario->Rol }}</td>
+            
                 <td>
                     
-                <a href="{{ url('/animal/'.$animal->id.'/edit') }}" class="btn btn-warning">
+                <a href="{{ url('/usuario/'.$usuario->id.'/edit') }}" class="btn btn-warning">
                     Editar
                 </a> 
                 |
                     
-                <form action="{{ url('/animal/'.$animal->id) }}" class="d-inline" method="post">
+                <form action="{{ url('/usuario/'.$usuario->id) }}" class="d-inline" method="post">
                 @csrf
                 {{ method_field('DELETE') }}
                 <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">

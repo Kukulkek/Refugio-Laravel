@@ -11,13 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('adopcions', function (Blueprint $table) {
+        Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('animal_id')->references('id')->on('animals')->constrained()->cascadeOnDelete();
             $table->string('Nombre');
-            $table->date('Fecha');
-            
+            $table->string('Segnombre');
+            $table->string('Apellidop');
+            $table->string('Apellidom');
+            $table->string('email')->unique();
+            $table->string('Telefono');
+            $table->string('Rol');
+
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('adopcions');
+        Schema::dropIfExists('usuarios');
     }
 };

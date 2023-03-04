@@ -34,6 +34,9 @@
                         <a class="nav-link" href="{{ route('animal.index') }}">{{ __('Animal') }}</a>
                         </li>
                         <li class="nav-item">
+                        <a class="nav-link" href="{{ route('usuario.index') }}">{{ __('Usuario') }}</a>
+                        </li>
+                        <li class="nav-item">
                         <a class="nav-link" href="{{ route('tratamiento.index') }}">{{ __('Tratamiento') }}</a>
                         </li>
                         <li class="nav-item">
