@@ -12,14 +12,17 @@
     </div>
     @endif
     <a href="{{ url('tratamiento/create') }}" class="btn btn-success">Añadir tratamiento</a>
+    <a href="{{ url('procedimiento') }}" class="btn btn-success">Procedimiento</a>
+    <br>
+    <br>
     <div class="search-container">
-    <input type="text" placeholder="Buscar Nombre">
-    <button type="button">Buscar</button>
+    <input type="search" placeholder="Buscar Tratamiento">
+    <button type="button" class="btn btn-primary">Buscar</button>
     </div>
+    <br>
     <table class="table table-light">
         <thead class="thead-light">
             <tr>
-                <th>#</th>
                 <th>Animal</th>
                 <th>Nombre Tratamiento</th>
                 <th>Fecha</th>
@@ -31,12 +34,11 @@
         <tbody>
             @foreach( $tratamientos as $tratamiento )
             <tr>
-                <td>{{ $tratamiento->id }}</td>
 
                 <td>{{ $tratamiento->animal_id }}</td>
-                <td>{{ $tratamiento->Nombre }}</td>
+                <td>{{ $tratamiento->procedimiento_id }}</td>
                 <td>{{ $tratamiento->Fecha }}</td>
-                <td>{{ $tratamiento->Veterinario }}</td>
+                <td>{{ $tratamiento->usuario_id }}</td>
                 <td>
                     
                 <a href="{{ url('/tratamiento/'.$tratamiento->id.'/edit') }}" class="btn btn-warning">

@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('tratamientos', function (Blueprint $table) {
             $table->id();
+
             $table->foreignId('animal_id')->references('id')->on('animals')->constrained()->cascadeOnDelete();
-            $table->string('Nombre');
+            $table->foreignId('procedimiento_id')->references('id')->on('procedimientos')->constrained()->cascadeOnDelete();
             $table->date('Fecha');
-            $table->string('Veterinario');
+            $table->foreignId('usuario_id')->references('id')->on('usuarios')->constrained()->cascadeOnDelete();
+
             $table->timestamps();
         });
     }

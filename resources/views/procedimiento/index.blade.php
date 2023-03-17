@@ -11,7 +11,7 @@
         </button>
     </div>
     @endif
-    <a href="{{ url('usuario/create') }}" class="btn btn-success">Añadir usuario</a>
+    <a href="{{ url('procedimiento/create') }}" class="btn btn-success">Añadir procedimiento</a>
     <br>
     <br>
     <div class="search-container">
@@ -22,39 +22,24 @@
     <table class="table table-light">
         <thead class="thead-light">
             <tr>
-
-                <th>Nombre</th>
-                <th>Segundo Nombre</th>
-                <th>Apellido Paterno</th>
-                <th>Apellido Materno</th>
-                <th>Correo Electronico</th>
-                <th>Número Telefonico</th>
-                <th>Rol</th>
-
+                <th>Procedimiento</th>
                 <th>Acciones</th>
             </tr>
         </thead>
 
         <tbody>
-            @foreach( $usuarios as $usuario )
+            @foreach( $procedimientos as $procedimiento )
             <tr>
+                <td>{{ $procedimiento->Procedimiento }}</td>
 
-                <td>{{ $usuario->Nombre }}</td>
-                <td>{{ $usuario->Segnombre }}</td>
-                <td>{{ $usuario->Apellidop }}</td>
-                <td>{{ $usuario->Apellidom }}</td>
-                <td>{{ $usuario->email }}</td>
-                <td>{{ $usuario->Telefono }}</td>
-                <td>{{ $usuario->Rol }}</td>
-            
                 <td>
                     
-                <a href="{{ url('/usuario/'.$usuario->id.'/edit') }}" class="btn btn-warning">
+                <a href="{{ url('/procedimiento/'.$procedimiento->id.'/edit') }}" class="btn btn-warning">
                     Editar
                 </a> 
                 |
                     
-                <form action="{{ url('/usuario/'.$usuario->id) }}" class="d-inline" method="post">
+                <form action="{{ url('/procedimiento/'.$procedimiento->id) }}" class="d-inline" method="post">
                 @csrf
                 {{ method_field('DELETE') }}
                 <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">

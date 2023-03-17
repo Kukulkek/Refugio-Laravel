@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Adopcion;
 use App\Models\Animal;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;
@@ -27,7 +28,8 @@ class AdopcionController extends Controller
     {
         //
         $animals = Animal::all();
-        $data = array("lista_animals" => $animals);
+        $usuarios = Usuario::all();
+        $data = array("lista_animals" => $animals, "lista_usuarios" => $usuarios);
         return response()->view('adopcion.create', $data, 200);
     }
 
@@ -36,22 +38,12 @@ class AdopcionController extends Controller
      */
     public function store(Request $request)
     {
-        //
-
-        $campos=[
-            'Nombre'=>'required|string|max:20'
-        ];
-        $mensaje=[
-            'required'=>'El :attribute es required'
-        ];
-
-        $this->validate($request, $campos, $mensaje);
-        
+        //z        
         //$datosAnimal = request()->all();
         $datosAdopcion = request()->except('_token');
 
         Adopcion::insert($datosAdopcion);
-        return response()->json($datosAdopcion);
+        return redirect('adopcion');
     }
 
     /**

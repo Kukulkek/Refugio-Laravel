@@ -3,6 +3,9 @@
 @section('content')
 
 <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
     @if(Session::has('mensaje'))
     <div class="alert alert-success alert-dismissible" role="alert">
         {{ Session::get('mensaje') }}
@@ -11,15 +14,33 @@
         </button>
     </div>
     @endif
+    <h1 class="d-inline-block">
     <a href="{{ url('animal/create') }}" class="btn btn-success">Añadir animal</a>
-    <div class="search-container">
-    <input type="text" placeholder="Buscar Nombre">
-    <button type="button">Buscar</button>
+    <a href="{{ url('especie') }}" class="btn btn-success">Especie</a>
+    <a href="{{ url('raza') }}" class="btn btn-success">Raza</a>
+     </h1>
+    <h1 class="d-inline-block">
+        Busqueda por Nombre
+    </h1>
+     <h1 class="d-inline-block">
+        {{ Form::open(['route'=> 'animal.index', 'method' => 'GET', 'class' => 'form-inline pull-right']) }}
+            <div class="form-group d-inline-block">
+                {{ Form::text('Nombre', null, ['class' => 'form-control', 'placeholder' => 'Nombre']) }}
+            </div>  
+            <div class="form-group d-inline-block">
+                <button type="submit" class="btn btn-secondary">Buscar
+                </button>
+            </div>
+        {{ Form::close() }}
+        </h1>
+    
+            </div>
+        </div>
     </div>
+    <br>
     <table class="table table-light">
         <thead class="thead-light">
             <tr>
-                <th>#</th>
                 <th>Foto</th>
                 <th>Especie</th>
                 <th>Raza</th>
@@ -32,12 +53,11 @@
         <tbody>
             @foreach( $animals as $animal )
             <tr>
-                <td>{{ $animal->id }}</td>
                 <td>
                     <img src="{{ asset('storage').'/'.$animal->Foto }}" width="100" alt="">
                 </td>
-                <td>{{ $animal->Especie }}</td>
-                <td>{{ $animal->Raza }}</td>
+                <td>{{ $animal->especie->Especie }}</td>
+                <td>{{ $animal->raza->Raza }}</td>
                 <td>{{ $animal->Nombre }}</td>
                 <td>{{ $animal->Sexo }}</td>
                 <td>

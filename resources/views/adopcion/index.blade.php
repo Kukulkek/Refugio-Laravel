@@ -12,17 +12,19 @@
     </div>
     @endif
     <a href="{{ url('adopcion/create') }}" class="btn btn-success">Añadir adopcion</a>
+    <br>
+    <br>
     <div class="search-container">
-    <input type="text" placeholder="Buscar Nombre">
-    <button type="button">Buscar</button>
+    <input type="search" placeholder="Buscar Nombre">
+    <button type="button" class="btn btn-primary">Buscar</button>
     </div>
+    <br>
     <table class="table table-light">
         <thead class="thead-light">
             <tr>
-                <th>#</th>
                 <th>Animal</th>
                 <th>Nombre</th>
-                <th>Fecha</th>
+                <th>Usuario</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -30,9 +32,8 @@
         <tbody>
             @foreach( $adopcions as $adopcion )
             <tr>
-                <td>{{ $adopcion->id }}</td>
                 <td>{{ $adopcion->animal_id }}</td>
-                <td>{{ $adopcion->Nombre }}</td>
+                <td>{{ $adopcion->usuario_id }}</td>
                 <td>{{ $adopcion->Fecha }}</td>
                 <td>
                     

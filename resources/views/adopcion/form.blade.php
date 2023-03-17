@@ -22,15 +22,20 @@
         @endforeach
     </select>
     <br>
-    <label for="Nombre">Nombre</label>
-    <input type="text" class="form-control" name="Nombre" value="{{ isset($adopcion->Nombre)?$adopcion->Nombre:'' }}" id="Nombre">
+    <label for="Usuario">Usuario</label>
+    <select name="usuario_id" class="form-control" value="{{ isset($tratamiento->usuario_id)?$tratamiento->usuario_id:'' }}" id="usuario_id">
+    <option selected>Elija un usuario</option>
+        @foreach($lista_usuarios as $item)
+        <option value="{{ $item->id }}">{{ $item->Nombre }}</option>
+        @endforeach
+    </select>
     <br>
     <label for="Fecha">Fecha</label>
     <input type="date" class="form-control" name="Fecha" value="{{ isset($adopcion->Fecha)?$adopcion->Fecha:'' }}" id="Fecha">
     <br>
     <br>
-    <input type="submit" class="form-control btn btn-success" value="Guardar datos">
-    <a href="{{ url('adopcion/') }}" class="form-control btn btn-warning">Regresar</a>  
+    <input type="submit" class="btn btn-success" value="Guardar datos">
+    <a href="{{ url('adopcion/') }}" class="btn btn-warning">Regresar</a>  
     
     <br>
 

@@ -36,8 +36,8 @@
     <input type="text" class="form-control" name="Rol" value="{{ isset($usuario->Rol)?$usuario->Rol:'' }}" id="Rol">
     <br>
     <br>
-    <input type="submit" class="form-control btn btn-success" value="Guardar datos">
-    <a href="{{ url('animal/') }}" class="form-control btn btn-warning">Regresar</a>  
+    <input type="submit" class="btn btn-success" value="Guardar datos">
+    <a href="{{ url('animal/') }}" class="btn btn-warning">Regresar</a>  
     
     <br>
 

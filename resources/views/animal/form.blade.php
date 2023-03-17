@@ -15,10 +15,20 @@
     @endif
     
     <label for="Especie">Especie</label>
-    <input type="text" class="form-control" name="Especie" value="{{ isset($animal->Especie)?$animal->Especie:'' }}" id="Especie">
+    <select name="especie_id" class="form-control" value="{{ isset($animal->especie_id)?$animal->especie_id:'' }}" id="especie_id">
+    <option selected>Elija una especie</option>
+        @foreach($lista_especies as $item)
+        <option value="{{ $item->id }}">{{ $item->Especie }}</option>
+        @endforeach
+    </select>
     <br>
     <label for="Raza">Raza</label>
-    <input type="text" class="form-control" name="Raza" value="{{ isset($animal->Raza)?$animal->Raza:'' }}" id="Raza">
+    <select name="raza_id" class="form-control" value="{{ isset($animal->raza_id)?$animal->raza_id:'' }}" id="raza_id">
+    <option selected>Elija una raza</option>
+        @foreach($lista_razas as $item)
+        <option value="{{ $item->id }}">{{ $item->Raza }}</option>
+        @endforeach
+    </select>
     <br>
     <label for="Nombre">Nombre</label>
     <input type="text" class="form-control" name="Nombre" value="{{ isset($animal->Nombre)?$animal->Nombre:'' }}" id="Nombre">
@@ -32,8 +42,8 @@
     @endif
     <input type="file" class="form-control" name="Foto" value="" id="Foto">
     <br>
-    <input type="submit" class="form-control btn btn-success" value="Guardar datos">
-    <a href="{{ url('animal/') }}" class="form-control btn btn-warning">Regresar</a>  
+    <input type="submit" class="btn btn-success" value="Guardar datos">
+    <a href="{{ url('animal/') }}" class="btn btn-warning">Regresar</a>  
     
     <br>
 

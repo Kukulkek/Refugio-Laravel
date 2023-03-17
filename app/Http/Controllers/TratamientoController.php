@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Tratamiento;
 use App\Models\Animal;
+use App\Models\Usuario;
+use App\Models\Procedimiento;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;
@@ -27,7 +29,9 @@ class TratamientoController extends Controller
     {
         //
         $animals = Animal::all();
-        $data = array("lista_animals" => $animals);
+        $usuarios = Usuario::all();
+        $procedimientos = Procedimiento::all();
+        $data = array("lista_animals" => $animals, "lista_procedimientos" => $procedimientos, "lista_usuarios" => $usuarios);
         return response()->view('tratamiento.create', $data, 200);
     }
 
@@ -38,20 +42,10 @@ class TratamientoController extends Controller
     {
         //
 
-        $campos=[
-            'Nombre'=>'required|string|max:20'
-        ];
-        $mensaje=[
-            'required'=>'El :attribute es required'
-        ];
-
-        $this->validate($request, $campos, $mensaje);
-        
         //$datosAnimal = request()->all();
         $datosTratamiento = request()->except('_token');
-
         Tratamiento::insert($datosTratamiento);
-        return response()->json($datosTratamiento);
+        return redirect('tratamiento');
     }
 
     /**

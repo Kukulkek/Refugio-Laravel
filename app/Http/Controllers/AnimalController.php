@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Animal;
+use App\Models\Especie;
+use App\Models\Raza;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;
@@ -12,11 +14,14 @@ class AnimalController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $datos['animals']=Animal::paginate(5);
-        return view('animal.index',$datos );
+        $Nombre = $request->get('Nombre');
+        $animals = Animal::orderBy('id', 'ASC')
+        ->Nombre($Nombre)
+        ->paginate(5);
+        return view('animal.index', compact('animals'));
     }
 
     /**
@@ -25,7 +30,10 @@ class AnimalController extends Controller
     public function create()
     {
         //
-        return view('animal.create');
+        $razas = Raza::all();
+        $especies = Especie::all();
+        $data = array("lista_razas" => $razas, "lista_especies" => $especies);
+        return response()->view('animal.create', $data, 200);
     }
 
     /**
@@ -51,7 +59,7 @@ class AnimalController extends Controller
             $datosAnimal['Foto']=$request->file('Foto')->store('uploads','public');
         }
         Animal::insert($datosAnimal);
-        return response()->json($datosAnimal);
+        return redirect('animal');
     }
 
     /**
